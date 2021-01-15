@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+<form name="passgen">
+
+	<label for="length">Enter Length :</label>
+	<input type="text" name="length"/>
+	<input type="checkbox" name="symbol">
+	<label for="symbol" for="number">Include Symbols</label>
+	<input type="checkbox" name="number" />
+
+	<button type="submit">Generate!</button>
+</form>
+
+{% endblock %}
