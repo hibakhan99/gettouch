@@ -12,8 +12,8 @@ def home():
 @app.route('/passgen',methods=['GET','POST'])
 def generate_password() :
 
-    errors = {}
-
+    values = request.form
+    values.errors = {}
     if request.method == 'POST' :
         length = request.form['length']     #Extract length of password from form!
 
@@ -23,25 +23,32 @@ def generate_password() :
         """
 
         password = passgen(length)      #pass add_sym & add_num argument!
-
-        return render_template('passgen.html', errors = errors, password = password)
+        if password :
+            return render_template('passgen.html', values= values, password = password)
+        else :
+            values.errors['error'] = 'An Error Occured!'
+            return render_template('passgen.html', values = values )
 
     else :
 
-        return render_template('passgen.html', errors = errors)
+        return render_template('passgen.html', values = values)
 
 
-@app.route('/link/shorten')
+@app.route('/shorten',methods=['GET','POST'])
 def link_shortener():
 
-    errors = {}
-
+    values = request.form
+    values.errors = {}
     if request.method == 'POST' :
-        url = request.form['fullurl']   #Get Url from form!
-        short_link = shorten_url(url)   # TODO:Add support for multiline links!
-
-        return render_template('shortener.html', errors=errors, short_link=short_link)
+        url = values['fullurl']   #Get Url from form!
+        short_link = shorten_url(url)   # TODO:Add support for multiline links & option for other API
+        print(short_link)
+        if short_link :
+            return render_template('shortener.html', values = values, short_link=short_link)
+        else :
+            values.errors['error'] = 'Error Occured While Processing your request\nCheck your link!'
+            return render_template('shortener.html', values = values, short_link = short_link)
     else :
 
-        return render_template('shortener.html', errors=errors)
+        return render_template('shortener.html', values = values)
 

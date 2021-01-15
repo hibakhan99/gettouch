@@ -4,13 +4,30 @@
 
 {% block body %}
 
-<form name="shorten">
+{% if 'error' in values.errors %}
+<div class="msg-box">
+	<p>{{ values.errors['error'] }}</p>
+</div>
+{% else %}
 
-	<label for="url">Enter Url :</label>
+<form name="shorten" action="" method="post">
 
-	<input type="text" />
-
+	<label for="fullurl" class="text">Enter Url :</label>
+	<br/>
+	{% if 'fullurl' in values %}
+	<input type="url" name="fullurl" value="{{ values['fullurl'] }}"/>
+	{% else %}
+	<input type="url" name="fullurl" />
+	{% endif %}
+	<br/><br/>
 	<button type="submit">Shorten !</button>
 </form>
+
+{% if short_link %}
+
+<label class="text">Shortened Url :</label>
+<input type="text" readonly value="{{ short_link }}"/>
+{% endif %}
+{% endif %}
 
 {% endblock %}
