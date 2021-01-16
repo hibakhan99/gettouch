@@ -1,6 +1,6 @@
 
 from flask import Flask,render_template,request
-from helper.helper import passgen, shorten_url
+from helper.helper import passgen, shorten_url, omdb_search
 
 app = Flask(__name__)
 
@@ -42,7 +42,7 @@ def link_shortener():
     if request.method == 'POST' :
         url = values['fullurl']   #Get Url from form!
         short_link = shorten_url(url)   # TODO:Add support for multiline links & option for other API
-        print(short_link)
+
         if short_link :
             return render_template('shortener.html', values = values, short_link=short_link)
         else :
@@ -52,3 +52,34 @@ def link_shortener():
 
         return render_template('shortener.html', values = values)
 
+@app.route('/movie')
+def search_movie():
+
+    values = {}
+    if request.method=='GET' :
+        query = request.args.get('query')
+        page = request.args.get('page')
+
+        if not query :
+            return render_template('movie_search.html', values = values)
+        if page :
+            page = int(page)
+            results = omdb_search(query,page=page)
+        else :
+            results = omdb_search(query)
+        
+        values['query'] = query.replace('+',' ')
+        if 'error' in results:
+            values['error'] = results['error']
+            return render_template('movie_search.html', values = values)
+
+        elif results :
+            return render_template('movie_search.html', values = values, results = results, page = page)
+        else :
+            values['error'] = 'Unknown Error Occured!'
+            return render_template('movie_search.html', values = values)
+
+@app.route('/movie/<id>')
+def movie_info(id):
+
+    return id
