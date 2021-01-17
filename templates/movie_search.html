@@ -1,0 +1,72 @@
+
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if 'error' in values %}
+<div class="msg-box">
+        <p>{{ values['error'] }}</p>
+</div>
+{% else %}
+<div class="card">
+<form name="movie_search" action="">
+
+        <label for="query" class="text">Movie Name :</label>
+        <br/>
+        {% if 'query' in values %}
+        <input type="text" name="query" value="{{ values['query'] }}"/>
+        {% else %}
+        <input type="text" name="query" />
+        {% endif %}
+        <br/><br/>
+        <button type="submit">Search !</button>
+</form>
+</div>
+
+{% if results %}
+<h4>Total Results Found : {{ results['totalResults'] }}</h2>
+
+<!-- Logic for Oagination -->
+
+{% if page %}
+	{% if page > 1 %}
+	<div id="prevpage"><a href="{{ url_for('search_movie',page=page-1,query=values['query']) }}">{--</a></div>
+	<div id="nextpage"><a href="{{ url_for('search_movie',page=page+1, query=values['query']) }}">-}</a></div>
+	{% endif %}
+{% else %}
+<div id="nextpage"><a href="{{ url_for('search_movie',page=2, query=values['query']) }}">-}</a></div>
+{% endif %}
+
+<!-- Displaying Search Results -->
+
+	{% for result in results['Search']  %}
+		<div class="card">
+			<table>
+				<tr>
+					<td><img src="{{ result['Poster'] }}" height="100px"></img></td>
+					<td>
+						<table>
+				<tr>
+					<td style="white-space:nowrap;">Title :</td>
+					<td>{{ result['Title'] }}</td>
+				</tr>
+				<tr>
+					<td style="white-space:nowrap;">Year : </td>
+					<td>{{ result['Year'] }}</td>
+				</tr>
+				<tr>
+					<td style="white-space:nowrap;">Type : </td>
+					<td>{{ result['Type'] }}</td>
+				</tr>
+						</table>
+					</td>
+			</table>
+			<a href="{{ url_for('movie_info',id=result['imdbID']) }}"><button>View Info</button></a>
+		</div>
+	{% endfor %}
+
+{% endif %}
+{% endif %}
+
+{% endblock %}
