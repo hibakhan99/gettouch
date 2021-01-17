@@ -1,6 +1,6 @@
 
 from flask import Flask,render_template,request
-from helper.helper import passgen, shorten_url, omdb_search, spellcorrect
+from helper.helper import passgen, shorten_url, omdb_search, get_info, spellcorrect
 
 app = Flask(__name__)
 
@@ -83,6 +83,18 @@ def search_movie():
 @app.route('/movie/<id>')
 def movie_info(id):
 
+    values = {}
+    values['id'] = id
+    info = get_info(id)
+
+    if 'error' in info :
+        values['error'] = info['error']
+        return render_template('movie_info.html', values = values )
+    elif info :
+        return render_template('movie_info.html', values = values, info = info )
+    else :
+        values['error'] = 'Unknown Error Occured!'
+        return render_template('movie_info.html', values = values )
     return id
 
 

@@ -69,6 +69,21 @@ def omdb_search(query,type=False,page=None) :
         else :
             return resp
 
+def get_info(id) :
+
+    API_KEY = Config.API_KEY
+    url = 'http://www.omdbapi.com/'
+    params = {'apikey':API_KEY, 'i':id}
+    res = requests.get(url, params=params)
+    if res.status_code != 200 :
+        return {'error':'Either apikey is void or Try after some timw!'}
+    resp = json.loads(res.text)
+    if resp['Response'] == 'False' :
+        return {'error':resp['Error']}
+    else :
+        return resp
+
+
 def spellcorrect(para) :
 
     spell = SpellChecker()

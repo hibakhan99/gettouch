@@ -11,13 +11,16 @@ body {
 	color:	snow;
 }
 .goback {
-	float:	left;
+	left:	0;
+	padding:	5px;
 }
 .home {
-	float:	right;
+	right:	0;
+	padding:	5px;
 }
 #goback, #home {
-	display:	block;
+	display:	inline-block;
+	position:	absolute;
 }
 
 /* Nav Bar */
@@ -70,9 +73,9 @@ body {
 .card {                                                                                                           
         background-color:       rgba(102,70,231);
         box-shadow:     0 4px 8px 0 rgba(102,70,231), 0 6px 20px rgba(0,0,0,0.9);
-	margin-top:	10px 0 10px 0;
-
-
+	margin-top:	15px;
+	margin-left:	6px;
+	margin-right:	6px;
 }
 
 button {                                                                                                          border:	none;
@@ -140,3 +143,20 @@ button[type="submit"] {
 }
 
 /* End Message Box */
+
+/* Movie info Page */
+
+#info-card {
+	border:	9px;
+	padding-left:	4px;
+	padding-right:	4px;
+	padding-top:	10px;
+}
+
+.title {
+	padding-top:	4px;
+	text-align:	center;
+	display:	none;
+}
+
+/* END MOVIE INFO */
