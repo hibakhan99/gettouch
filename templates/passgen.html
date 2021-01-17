@@ -4,14 +4,22 @@
 {% block body %}
 
 {% if 'error' in values.errors %}
-<div class="msg-box">
-	    {{ values.errors['error'] }}
+
+<div class="msg-box" id="msg-box">
+
+                <span class="close-msg" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div class="msg-content">{{ values.errors['error'] }}</div>
 </div>
+<br/>
+<a id="goback" href="{{ url_for('generate_password') }}"><div class="goback">Go Back</div></a>
+<a id="home" href="{{ url_for('home') }}"><div class="home">Home</div></a>
+
 {% else %}
+
 <form name="passgen" action="" method="post">
 
 	<label for="length" class="text">Enter Length :</label>
-	<input type="text" name="length" required/>
+	<input type="number" name="length" required/>
 	<br/><br/>
 	{% if 'symbol' in values %}
 		{% if values['symbol'] == 'on' %}
@@ -20,7 +28,7 @@
 			<input type="checkbox" name="symbol" />
 		{% endif %}
 	{% else %}
-		<input type="checkbox" name="number" checked/>
+		<input type="checkbox" name="symbol" checked/>
 	{% endif %}
 	<label for="symbol" class="text">Include Symbols</label>
 	<br/><br/>

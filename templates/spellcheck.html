@@ -1,0 +1,42 @@
+
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if 'error' in values.errors %}
+<div class="msg-box" id="msg-box">
+
+                <span class="close-msg" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div class="msg-content">{{ values.errors['error'] }}</div>
+</div>
+<br/>
+<a id="goback" href="{{ url_for('spell_correct') }}"><div class="goback">Go Back</div></a>
+<a id="home" href="{{ url_for('home') }}"><div class="home">Home</div></a>
+
+{% else %}
+<form name="spellcheck" action="" method="post">
+
+        <label for="para" class="text">Enter your text :</label>
+	<br/>
+	{% if 'para' in values %}
+	<textarea name="para" id="para">{{ values['para'] }}</textarea>
+	{% else %}
+	<textarea name="para" id="para"></textarea>
+	{% endif %}
+        <br/><br/>
+        <button type="submit">Generate!</button>
+</form>
+
+{% endif %}
+
+<br/>
+
+{% if checked_para %}
+
+        <label class="text" >Your Correct Text : </label>
+	<br/>
+	<textarea rows="7" col="32" autofocus readonly>{{ checked_para }}</textarea>
+{% endif %}
+
+{% endblock %}
