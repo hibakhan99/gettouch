@@ -5,22 +5,22 @@ body {
 
 .goback, .home {
 	top:	250px;
+	border:	none;
+	border-radius:	5px;
 	background-color:	#58ba83;
 	text-decoration:	none;
-	padding:	4px 6px;
+	padding:	6px;
 	color:	snow;
+	position:	absolute;
 }
 .goback {
-	left:	0;
-	padding:	5px;
+	float:	left;
 }
 .home {
-	right:	0;
-	padding:	5px;
+	float:	right;
 }
 #goback, #home {
 	display:	inline-block;
-	position:	absolute;
 }
 
 /* Nav Bar */
@@ -37,7 +37,7 @@ body {
 
 /* Change the color of links on mouse-over */
 .pill-nav a:hover {
-  background-color: #ddd;
+  background-color: #d2f6fc;
   color: black;
 }
 
@@ -68,6 +68,11 @@ body {
 	background-color:	#58ba83;
 	color:	snow;
 	height:	15px;
+	padding:	4px;
+	border-radius:	6px;
+}
+#prevpage, #nextpage a {
+	text-decoration:none;
 }
 
 .card {                                                                                                           
@@ -76,6 +81,7 @@ body {
 	margin-top:	15px;
 	margin-left:	6px;
 	margin-right:	6px;
+	padding:	5px;
 }
 
 button {                                                                                                          border:	none;
@@ -83,8 +89,14 @@ button {                                                                        
 	background-color:       #58ba83;                                                                          color:  snow;
 	cursor: pointer;
 }
-
-
+.infobtn a {
+	text-decoration:	none;
+}
+.thumb {
+	border:	1px solid gray;
+	border-radius:	5px;
+	padding:	4px;
+}
 
 .text {
         margin: 3px;
@@ -147,7 +159,7 @@ button[type="submit"] {
 /* Movie info Page */
 
 #info-card {
-	border:	9px;
+	border-radius:	9px;
 	padding-left:	4px;
 	padding-right:	4px;
 	padding-top:	10px;
