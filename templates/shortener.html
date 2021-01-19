@@ -5,9 +5,15 @@
 {% block body %}
 
 {% if 'error' in values.errors %}
-<div class="msg-box">
-	<p>{{ values.errors['error'] }}</p>
+
+<div class="msg-box" id="msg-box">
+
+                <span class="close-msg" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div class="msg-content">{{ values.errors['error'] }}</div>
 </div>
+<br/>
+<a id="goback" href="{{ url_for('link_shortener') }}"><div class="goback">Go Back</div></a>
+<a id="home" href="{{ url_for('home') }}"><div class="home">Home</div></a>
 {% else %}
 
 <form name="shorten" action="" method="post">

@@ -1,15 +1,31 @@
 
 
+<style>                                                                                                                                                                                                             .infobtn {                                                                                                
+        background-color:       #58ba83;
+        border-radius:  4px;
+	padding:	4px;
+	display:	inline-block;
+}
+</style>
+
 {% extends 'base.html' %}
 
 {% block body %}
 
 {% if 'error' in values %}
-<div class="msg-box">
-        <p>{{ values['error'] }}</p>
+
+<div class="msg-box" id="msg-box">
+
+                <span class="close-msg" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div class="msg-content">{{ values['error'] }}</div>
 </div>
+
+<a id="goback" href="{{ url_for('search_movie') }}"><div class="goback">Go Back</div></a>
+<a id="home" href="{{ url_for('home') }}"><div class="home">Home</div></a>
+
 {% else %}
-<div class="card">
+
+<div id="info-card" class="card">
 <form name="movie_search" action="">
 
         <label for="query" class="text">Movie Name :</label>
@@ -17,7 +33,7 @@
         {% if 'query' in values %}
         <input type="text" name="query" value="{{ values['query'] }}"/>
         {% else %}
-        <input type="text" name="query" />
+        <input type="text" placeholder="High School DxD" name="query" />
         {% endif %}
         <br/><br/>
         <button type="submit">Search !</button>
@@ -27,16 +43,23 @@
 {% if results %}
 <h4>Total Results Found : {{ results['totalResults'] }}</h2>
 
-<!-- Logic for Oagination -->
+<!-- Logic for Pagination -->
+{% if page %}
+<p style="text-align:center;">You are on Page : {{ page }}</p>
+{% else %}
+<p style="text-align:center;">You are on Page : 1</p>
+{% endif %}
 
 {% if page %}
 	{% if page > 1 %}
-	<div id="prevpage"><a href="{{ url_for('search_movie',page=page-1,query=values['query']) }}">{--</a></div>
-	<div id="nextpage"><a href="{{ url_for('search_movie',page=page+1, query=values['query']) }}">-}</a></div>
+	<div id="prevpage"><a href="{{ url_for('search_movie',page=page-1,query=values['query']) }}">Previous Page</a></div>
+	<div id="nextpage"><a href="{{ url_for('search_movie',page=page+1, query=values['query']) }}">Next Page</a></div>
 	{% endif %}
 {% else %}
-<div id="nextpage"><a href="{{ url_for('search_movie',page=2, query=values['query']) }}">-}</a></div>
+<div id="nextpage"><a href="{{ url_for('search_movie',page=2, query=values['query']) }}">Next Page</a></div>
 {% endif %}
+
+<br/>
 
 <!-- Displaying Search Results -->
 
@@ -44,7 +67,7 @@
 		<div class="card">
 			<table>
 				<tr>
-					<td><img src="{{ result['Poster'] }}" height="100px"></img></td>
+					<td><img class="thumb" src="{{ result['Poster'] }}" height="150px"></img></td>
 					<td>
 						<table>
 				<tr>
@@ -62,7 +85,8 @@
 						</table>
 					</td>
 			</table>
-			<a href="{{ url_for('movie_info',id=result['imdbID']) }}"><button>View Info</button></a>
+
+			<div class="infobtn" ><a href="{{ url_for('movie_info',id=result['imdbID']) }}">View Info</a></div>
 		</div>
 	{% endfor %}
 
@@ -70,3 +94,4 @@
 {% endif %}
 
 {% endblock %}
+

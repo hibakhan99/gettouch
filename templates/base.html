@@ -4,7 +4,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"/>
+		<!--For Development Use 
 		<script src="{{ url_for('static',filename='cssrefresh.js') }}"></script>
+		-->
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 	</head>
 	{% block title %}
@@ -12,6 +14,14 @@
 	{% endblock %}
 
 	<body>
+
+		<div class="pill-nav">
+  			<a href="#home">Home</a>
+  			<a href="#news">News</a>
+  			<a href="#contact">Contact</a>
+  			<a href="#about">About</a>
+		</div>
+
 		{% block body %}
 
 		{% endblock %}

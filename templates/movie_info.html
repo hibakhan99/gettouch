@@ -1,0 +1,123 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if 'error' in values %}
+
+<div class="msg-box" id="msg-box">
+
+                <span class="close-msg" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div class="msg-content">{{ values['error'] }}</div>
+</div>
+
+<a id="goback" href="{{ url_for('search_movie') }}"><button class="goback">Go Back</button></a>
+<a id="home" href="{{ url_for('home') }}"><button class="home">Home</button></a>
+
+{% else %}
+
+<div id="info-card" class="card">
+
+	<div class="title">{{ info['Title'] }}</div>
+	<img src="{{ info['Poster'] }}" style="display:block;margin-left:auto;margin-right:auto;"></img>
+	<table>
+		<tr>
+			<td style="white-space:nowrap;">Total Seasons :</td>
+			<td >{{ info['totalSeasons'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Type :</td>
+			<td>{{ info['Type'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Year :</td>
+			<td>{{ info['Year'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Rating :</td>
+			<td>{{ info['Rating'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Release :</td>
+			<td>{{ info['Release'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Runtime :</td>
+			<td>{{ info['Runtime'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Genres :</td>
+			<td>{{ info['Genre'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Actors :</td>
+			<td>{{ info['Actors'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Language :</td>
+			<td>{{ info['Language'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Country :</td>
+			<td>{{ info['Country'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Awards :</td>
+			<td>{{ info['Awards'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Metascore :</td>
+			<td>{{ info['Metascore'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">Ratings :</td>
+			<td>
+				<table>
+					{% for i in info['Ratings'] %}
+					<tr>
+						<td style="white-space:nowrap;">{{ i['Source'] }}</td>
+						<td>{{ i['Value'] }}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">IMDB Rating :</td>
+			<td>{{ info['imdbRating'] }}</td>
+		</tr>
+		<tr>
+			<td style="white-space:nowrap;">IMDB Votes :</td>
+			<td style="white-space:nowrap;">{{ info['imdbVotes'] }}</td>
+		</tr>
+	</table>
+	<br/>
+	<div class="plot">Synopsis : {{ info['Plot'] }}</div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
+<!--
+Year
+Rated
+Release
+Runtime
+Genre
+Director
+Writor
+Actors
+Plot
+Language
+Country
+Awards
+Poster
+Ratings : [Source Value]
+Metascore
+imdbRating
+imdbVotes
+Type : series
+totalSeasons
+Response
+-->
