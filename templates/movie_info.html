@@ -19,7 +19,7 @@
 <div id="info-card" class="card">
 
 	<div class="title">{{ info['Title'] }}</div>
-	<img src="{{ info['Poster'] }}" style="display:block;margin-left:auto;margin-right:auto;"></img>
+	<img src="{{ info['Poster'] }}" style="display:block;margin-left:auto;margin-right:auto;margin:5px;"></img>
 	<table>
 		<tr>
 			<td style="white-space:nowrap;">Total Seasons :</td>
@@ -92,32 +92,10 @@
 		</tr>
 	</table>
 	<br/>
-	<div class="plot">Synopsis : {{ info['Plot'] }}</div>
+	<div class="plot"><b>Synopsis :</b> {{ info['Plot'] }}</div>
 
 </div>
 
 {% endif %}
 
 {% endblock %}
-<!--
-Year
-Rated
-Release
-Runtime
-Genre
-Director
-Writor
-Actors
-Plot
-Language
-Country
-Awards
-Poster
-Ratings : [Source Value]
-Metascore
-imdbRating
-imdbVotes
-Type : series
-totalSeasons
-Response
--->

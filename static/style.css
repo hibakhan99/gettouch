@@ -3,6 +3,12 @@ body {
         background-image:       linear-gradient(to bottom, rgba(102,70,231,1),rgba(102,70,231,0.8),rgba(102,70,231,0.6),rgba(120,70,231,0.5));
 }
 
+.logo {
+	font-family: 'Playball', cursive;
+	text-align:	center;
+	font-size:	25px;
+}
+
 .goback, .home {
 	top:	250px;
 	border:	none;
@@ -44,14 +50,98 @@ body {
 
 /* NAV BAR END */
 
+
+/* NEW NAV BAR */
+
+.topnav {
+        overflow:       hidden;
+        /*background-color:     #280b6f;*/
+        /*
+        background-image:       linear-gradient(to bottom right, rgba(128,128,128,1), rgba(0, 0, 0, 1));
+	*/
+        position:       relative;
+        border:         1px solid red;
+        display:        block;
+        width:  100%;
+	margin:	0;
+	box-shadow:	0 6px 20px rgba(0,0,0,0.9);
+}
+.topnav a {
+        float:  left;
+        color:  snow;
+        padding:        14px 16px;                                                                                text-decoration:        none;
+        display:        block;
+}
+.topnav a.icon {
+        display:        block;
+        float:  right;
+
+}
+.topnav a.hover {
+        background-color:       #ddd;
+        color:  black;
+}
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */                                                                      z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right:0;
+  border-top-left-radius:80px;
+  background-image: linear-gradient(30deg , #0048bd, #44a7fd);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */                                                  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 12px;
+  padding-right:        30px;
+  text-decoration: none;
+  font-size: 15px;      /* 25px for desktop */
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #3f53fb;
+  background-color: #fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.sidenav a i{                                                                                               margin-left:  5px;
+}                                                                                                         
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;                                                                                       top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
 /* Home Page */
 
 .home-content a {
         text-decoration:        none;
-        color:  #000000;
 	display:	block;
-	width:	48%;
 	float:	left;
+	margin-top:	5px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.home-content div {
+	width: 100%;
+	border-left:	4px solid gray;
+	margin-top:	10px;
+	padding:	12px;
+	padding-bottom:	25px;
+	box-shadow:	0 6px 10px rgba(0,0,0,0.9);
 }
 
 /* Movie Search Page */
@@ -71,7 +161,7 @@ body {
 	padding:	4px;
 	border-radius:	6px;
 }
-#prevpage, #nextpage a {
+#prevpage a, #nextpage a {
 	text-decoration:none;
 }
 
@@ -81,7 +171,6 @@ body {
 	margin-top:	15px;
 	margin-left:	6px;
 	margin-right:	6px;
-	padding:	5px;
 }
 
 button {                                                                                                          border:	none;
@@ -160,6 +249,7 @@ button[type="submit"] {
 
 #info-card {
 	border-radius:	9px;
+	margin-bottom:	10px;
 	padding-left:	4px;
 	padding-right:	4px;
 	padding-top:	10px;
@@ -168,7 +258,23 @@ button[type="submit"] {
 .title {
 	padding-top:	4px;
 	text-align:	center;
-	display:	none;
+}
+.plot {
+	font-size:	14px;
 }
 
+
 /* END MOVIE INFO */
+
+<!-- Media Queries!! -->
+<!-- for desktop -->
+
+@media only screen and (min-width:768px) {
+        .sidenav a {
+                font-size:      25px;
+        }
+
+	input[type="text"], input[type="url"], input[type="number"] {
+		width:	50%;
+	}
+}

@@ -72,11 +72,14 @@ def omdb_search(query,type=False,page=None) :
 def get_info(id) :
 
     API_KEY = Config.API_KEY
+    if API_KEY is None :
+        return {'error':'No API Key provided. Please contact the developer!'}
+
     url = 'http://www.omdbapi.com/'
     params = {'apikey':API_KEY, 'i':id}
     res = requests.get(url, params=params)
     if res.status_code != 200 :
-        return {'error':'Either apikey is void or Try after some timw!'}
+        return {'error':'Either apikey is void or Try after some time!'}
     resp = json.loads(res.text)
     if resp['Response'] == 'False' :
         return {'error':resp['Error']}

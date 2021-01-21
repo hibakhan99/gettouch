@@ -4,10 +4,29 @@
 {% block body %}
 
 <div class="home-content">
-	<a href="{{ url_for('generate_password') }}">Password Generator</a>
+	<div>
+		<h4 style="text-align:center;">Password Generator</h4>
+		<p style="margin:5px;text-align:justify;">A password generator app which creates a password of desired length. It also has an option to include or exclude the use of numbers or symbols in creating the password.</p>
+	<a href="{{ url_for('generate_password') }}">Try Now</a>
+	</div>
+	<div>
+		<h4 style="text-align:center;">Link Shortener</h4>
+                <p style="margin:5px;text-align:justify;">A password generator app which creates a passwor
+d of desired length. It also has an option to include or exclude the use of numbers or symbols in creating the password.</p>
 	<a href="{{ url_for('link_shortener') }}">Link Shortener</a>
+	</div>
+	<div>
+		<h4 style="text-align:center;">Movie Search</h4>
+                <p style="margin:5px;text-align:justify;">A password generator app which creates a passwor
+d of desired length. It also has an option to include or exclude the use of numbers or symbols in creating the password.</p>
 	<a href="{{ url_for('search_movie') }}">Movie Search</a>
+	</div>
+	<div>
+		<h4 style="text-align:center;">Spell Corrector</h4>
+                <p style="margin:5px;text-align:justify;">A password generator app which creates a passwor
+d of desired length. It also has an option to include or exclude the use of numbers or symbols in creating the password.</p>
 	<a href="{{ url_for('spell_correct') }}">Spell Corrector</a>
+	</div>
 </div>
 {% endblock %}
 
